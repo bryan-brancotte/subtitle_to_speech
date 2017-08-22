@@ -20,4 +20,4 @@ docker run -v $(pwd)/data:/data -it tts
 
 ## Choosing your languages
 
-A subtitle file is read by default in english. To choose an other language, juste specify in the filename following `filename.[language key].srt` where [language key] can be fr (french), en, es (spanish), zh-CN (chinese)
+A subtitle file is read by default in english. To choose an other language, juste specify in the filename following `filename.[language key].srt` where [language key] can be `fr` (french), `en`, `es` (spanish), `zh-CN` (chinese), ...
