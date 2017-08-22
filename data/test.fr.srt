@@ -1,0 +1,15 @@
+1
+00:00:00,000 --> 00:00:03,540
+Cet outil vous permet de convertir des sous titres en fichier audio.
+
+2
+00:00:05,440 --> 00:00:06,040
+Il utilise docker.
+
+3
+00:00:06,380 --> 00:00:09,960
+Il utilise aussi l'API de text to speech de google, et ce grâce à la librairie python gTTS.
+
+4
+00:00:12,380 --> 00:00:13,960
+et finalement aussi les logiciels mpg123 et sox.

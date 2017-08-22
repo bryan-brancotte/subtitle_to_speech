@@ -1,0 +1,15 @@
+1
+00:00:00,000 --> 00:00:03,540
+This tool helps you to convert subtitle file to audio file.
+
+2
+00:00:05,440 --> 00:00:06,040
+It use docker.
+
+3
+00:00:06,380 --> 00:00:09,960
+It also use google text to speech API, thanks to gTTS python library.
+
+4
+00:00:12,380 --> 00:00:13,960
+and last but not least mpg123 and sox.

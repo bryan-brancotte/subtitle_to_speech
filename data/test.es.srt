@@ -1,0 +1,16 @@
+1
+00:00:00,000 --> 00:00:03,540
+Esta herramienta le ayuda a convertir archivos de subtítulos a archivos de audio.
+
+2
+00:00:05,440 --> 00:00:06,040
+Utiliza Docker.
+
+3
+00:00:06,380 --> 00:00:09,960
+También utiliza Google API texto a voz, gracias a la biblioteca de GTTS Python.
+
+4
+00:00:12,380 --> 00:00:13,960
+y por último utiliza mpg123 y sox.
+
