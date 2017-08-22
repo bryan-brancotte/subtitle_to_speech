@@ -12,7 +12,7 @@ It uses Google text to speech API, [mpg123](https://www.mpg123.de/) and [sox](ht
 docker build . -t tts
 ```
 
-### convert all srt files that we can finf in ./data directory
+### convert all srt files that we can find in ./data directory
 
 ```
 docker run -v $(pwd)/data:/data -it tts
