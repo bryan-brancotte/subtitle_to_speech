@@ -25,34 +25,41 @@ def convert_string_to_wav(text, outfile_path, lang='en', delay=0, tempo=1.2):
     os.remove(outfile_path+'.tmp.wav')
     os.remove(outfile_path+'.tmp.mp3')
     
-def convert_str_to_wav_in_docker_command(srt_file="", outfile="out.wav", lang='en', tempo=1.2):
+def convert_str_to_wav_in_docker_command(srt_file="", outfilename="", lang='', tempo=1.2):
     """
     Convert a subtitle file found in /data into a wav file
 
     Args:
         :param srt_file: filename of the subtitle file in srt format
-        :param outfile: filename of the outfile
+        :param outfilename: filename of the outfile
         :param lang: the language, english by default
         :param tempo: speed of speech, google defaut is 1 but too slow
 
     """
-    for file_name in os.listdir('/data'):
+    if srt_file == "":
+        filenames = os.listdir('/data/')
+    else:
+        filenames = [srt_file, ]
+    for file_name in filenames:
         if file_name[-4:] == ".srt":
-            try:
-                rindex = file_name[:-4].rindex('.')+1
-                if rindex == 0:
-                    raise Exception()
-                lang=file_name[rindex:-4]
-            except Exception:
-                print("no language found, to specify it end the filename with -fr.srt or -en.srt") 
-                lang="en"
             print ("language of %s: %s" % (file_name, lang))
             convert_str_to_wav_command(
                 srt_file="/data/%s" % file_name,
-                outfile_path="/data/%s.wav" % file_name[:-4],
-                lang=lang,
+                outfile_path="/data/%s.wav" % (file_name[:-4] if outfilename == "" else outfilename),
+                lang=get_language_from_filename(file_name) if lang == "" else lang,
+                tempo=tempo,
             )
     
+def get_language_from_filename(file_name):
+    try:
+        rindex = file_name[:-4].rindex('.')+1
+        if rindex == 0:
+            raise Exception()
+        return file_name[rindex:-4]
+    except Exception:
+        print("No language found. To specify it, ends the filename with .fr.srt or .en.srt") 
+        return "en"
+
 def convert_str_to_wav_command(srt_file, outfile_path, lang='en', tempo=-1):
     """
     Convert a subtitle file into a wav file
