@@ -83,19 +83,23 @@ def convert_str_to_wav_command(srt_file, outfile_path, lang='en', tempo=-1):
     ran_str=lang+''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
     tmp_outfile_path="/tmp/%s-out.wav"%ran_str
     while line_id+2<len(lines):
-        name = lines[line_id+0].replace("\r","")[:-1]
-        timming = lines[line_id+1].replace("\r","")[:-1]
-        text = lines[line_id+2].replace("\r","")[:-1]
-        delay = ((int(timming[0:2]) * 60 + int(timming[3:5])) * 60 + int(timming[6:8]))
-        part_files.append("/tmp/%s-%s.wav"%(ran_str,name))
-        convert_string_to_wav(
-            text=text,
-            outfile_path=part_files[-1],
-            lang=lang,
-            delay=delay,
-            tempo=tempo,
-        )
-        line_id+=4
+        try:
+            name = lines[line_id+0].replace("\r","")[:-1]
+            timming = lines[line_id+1].replace("\r","")[:-1]
+            text = lines[line_id+2].replace("\r","")[:-1]
+            delay = ((int(timming[0:2]) * 60 + int(timming[3:5])) * 60 + int(timming[6:8]))
+            part_files.append("/tmp/%s-%s.wav"%(ran_str,name))
+            convert_string_to_wav(
+                text=text,
+                outfile_path=part_files[-1],
+                lang=lang,
+                delay=delay,
+                tempo=tempo,
+            )
+            line_id+=4
+        except Exception as e:
+            print("Error at line " + str(line_id) + " in " + srt_file)
+            raise e
         #if len(part_files) == 2:
         #    call(['sox', '-m'] + part_files + [tmp_outfile_path])
         #elif len(part_files) > 2:
